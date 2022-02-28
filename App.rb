@@ -1,7 +1,7 @@
-require_relative 'Wallet'
-require_relative 'User'
-# require_relative 'Blackjack'
-require_relative 'Roulette'
+require_relative 'Wallet.rb'
+require_relative 'User.rb'
+require_relative 'Blackjack'
+require_relative 'Roulette.rb'
 
 class App
   attr_accessor :user
@@ -20,8 +20,9 @@ class App
     f_name = gets.strip
     puts "How much money would you like to use?"
     money = gets.strip.to_i
-    @user = User.new(f_name, money)
-    puts "#{@user.money}"
+    @user = User.new(f_name, money) 
+    @wallet = Wallet.new(money)
+    puts "You now have $#{@wallet.current_bal} in your bank"
     game_menu
   end
 
@@ -34,7 +35,6 @@ class App
     menu_choice = gets.strip.to_i
     if menu_choice == 1
       Blackjack.new(@user)
-      game_menu
     elsif menu_choice == 2
       Roulette.new(@user)
     elsif menu_choice == 3
@@ -50,4 +50,4 @@ class App
 
 end
 
-app = App.new
+@app = App.new
